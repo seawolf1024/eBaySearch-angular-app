@@ -1,0 +1,24 @@
+[
+    {
+        "firstName":"John",
+        "suername":"Alex",
+        "phone": "18559326860",
+        "city": "Xiamen",
+        "interests":["basketball", "frontend","games"],
+        "cars":[
+            {"brand":"binli", "year":1990},
+            {"brand":"tesla", "year":2021}
+        ]
+    },
+    {
+        "firstName":"San",
+        "suername":"John",
+        "phone": "13013882200",
+        "city": "Beijing",
+        "interests":["xingfa", "frontend","games"],
+        "cars":[
+            {"brand":"laoslays", "year":1990},
+            {"brand":"tesla", "year":2021}
+        ]
+    }
+]

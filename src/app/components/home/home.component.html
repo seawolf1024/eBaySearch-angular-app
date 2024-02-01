@@ -1,0 +1,78 @@
+<!-- <h1>home page</h1>
+
+<img src="assets/images/girl.png" weight="100px" height="100px" alt="boyImg"/>
+<img [src]="picUrl" alt="google"/>
+
+<ul>
+    <li *ngFor="let item of mylist; let key=index;">
+        {{key}}---{{item.title}}
+    </li>
+</ul>
+
+<div *ngIf="flag">
+    flag==true. {{flag}}
+</div>
+<div *ngIf="!flag">
+    flag==false. {{flag}}
+</div>
+
+
+<ul>
+    <li *ngFor="let item of mylist; let key=index;">
+        <span *ngIf="key==1" class="red"> {{key}}---{{item.title}}</span>
+        <span *ngIf="key!=1" class="green"> {{key}}---{{item.title}}</span>
+    </li>
+</ul>
+
+
+<span [ngSwitch]="orderStatus">
+    <p *ngSwitchCase="1">
+        switch 1
+    </p>
+    <p *ngSwitchCase="2">
+        switch 2
+    </p>
+    <p *ngSwitchCase="3">
+        switch 3
+    </p>
+</span>
+
+<div [ngClass]="{'red':true,'green':false}">
+    What color?
+</div>
+
+<div [ngClass]="{'red':!orderStatus,'green':orderStatus}">
+    What color?
+</div>
+
+<ul>
+    <li *ngFor="let item of mylist; let key = index" [ngClass]="{'red':key==1,'green':key==2}">
+        {{key}}---{{item.title}}
+    </li>
+</ul>
+
+<h1>pipe</h1>
+<p>{{today | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+
+<h1>Functions</h1>
+<button (click)="run()">RUN methods</button>
+<button (click)="getDate()">RUN methods get data</button>
+
+
+<h1>Form</h1>
+<input type="text" (keydown)="keydown($event)"/>
+
+<button (click)="runEvent($event)">RUN event</button>
+
+<input type="text" [(ngModel)]='keywords'/>
+
+{{keywords}}
+
+<button (click)="changeKeywords()">changeKeywords</button>
+
+<button (click)="getKeywords()">getKeywords</button>
+ -->
+
+
+ <p>I'm home</p>
+ <app-header [title]="title" [msg]="msg" [run]="run" [home]="this"></app-header>

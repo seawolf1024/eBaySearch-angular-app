@@ -1,0 +1,217 @@
+<!-- <p>seller works!</p> -->
+
+<!-- <div>{{productInfo.Item.Seller }}</div> -->
+
+<div class="container row g-3 text-bg-dark table-responsive" 
+    style="margin: 0 auto; margin-bottom: 30px; margin-top: 0px;background-color: black;">
+
+    <table class="table table-dark table-striped" *ngIf="productInfo.Item != undefined && productInfo.Item.Seller != undefined">
+        <tbody >
+            <thead >
+                <tr>
+                  <th scope="col" class="col-md-4"></th>
+                  <th scope="col" class="col-md-8"></th>
+                </tr>
+            </thead>
+
+            <!-- Feedback Score  -->
+            <tr *ngIf="productInfo.Item.Seller.FeedbackScore != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Feedback Score</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <div>{{productInfo.Item.Seller.FeedbackScore}}</div>
+                </td>
+            </tr>
+
+            <!-- Popularity -->
+            <tr *ngIf="productInfo.Item.Seller.PositiveFeedbackPercent != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Popularity</div>
+                    
+                </th>
+                <!-- info  -->
+                <td>
+                    <div>{{productInfo.Item.Seller.PositiveFeedbackPercent}}</div>
+                    <!-- <span class="material-icons" style="color: rgb(35, 125, 35);">
+                        radio_button_unchecked green
+                    </span> -->
+                </td>
+            </tr>
+
+            <!-- Feedback Rating Star -->
+            <tr *ngIf="productInfo.Item.Seller.FeedbackRatingStar != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Feedback Rating Star</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <!-- <div>{{productInfo.Item.Seller.FeedbackRatingStar}}</div> -->
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'None'">
+                        <span class="material-icons" style="color: Black;">
+                            stars
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'Yellow'">
+                        <span class="material-icons" style="color: Yellow;">
+                            stars
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'Blue'">
+                        <span class="material-icons" style="color: Blue;">
+                            stars
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'Turquoise'">
+                        <span class="material-icons" style="color: Turquoise;">
+                            stars
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'Purple'">
+                        <span class="material-icons" style="color: Purple;">
+                            stars
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'Red'">
+                        <span class="material-icons" style="color: Red;">
+                            stars
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'Green'">
+                        <span class="material-icons" style="color: Green;">
+                            stars
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'YellowShooting'">
+                        <span class="material-icons" style="color: Yellow;">
+                            rocket_launch
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'TurquoiseShooting'">
+                        <span class="material-icons" style="color: Turquoise;">
+                            rocket_launch
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'PurpleShooting'">
+                        <span class="material-icons" style="color: Purple;">
+                            rocket_launch
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'RedShooting'">
+                        <span class="material-icons" style="color: Red;">
+                            rocket_launch
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'GreenShooting'">
+                        <span class="material-icons" style="color: Green;">
+                            rocket_launch
+                        </span>
+                    </div>
+                    <div *ngIf="productInfo.Item.Seller.FeedbackRatingStar == 'SilverShooting'">
+                        <span class="material-icons" style="color: Silver;">
+                            rocket_launch
+                        </span>
+                    </div>
+
+                </td>
+            </tr>
+
+            <!-- Top Rated -->
+            <tr *ngIf="productInfo.Item.Seller.TopRatedSeller != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Top Rated</div>
+                </th>
+                <!-- info  -->
+                <span *ngIf="productInfo.Item.Seller.TopRatedSeller==true" class="material-icons" style="color: rgb(49, 157, 49);">
+                    check
+                </span>
+
+                <span *ngIf="productInfo.Item.Seller.TopRatedSeller==false" class="material-icons" style="color: rgb(212, 55, 55);">
+                    close
+                </span>
+            </tr>
+
+            <!-- Store Name -->
+            <tr *ngIf="productInfo.Item.Storefront.StoreName != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Store Name</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <div>{{productInfo.Item.Storefront.StoreName}}</div>
+                </td>
+            </tr>
+
+            <!-- Buy Product At -->
+            <tr *ngIf="productInfo.Item.Storefront.StoreURL != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Buy Product At</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <a href="{{productInfo.Item.Storefront.StoreURL}}">
+                        <div>Store</div>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<!-- <div *ngIf="productInfo.Item != undefined">
+    <li *ngIf="productInfo.Item.Seller.FeedbackScore != undefined">
+        <div>Feedback Score</div>
+        <div>{{productInfo.Item.Seller.FeedbackScore}}</div>
+    </li>
+
+    <li *ngIf="productInfo.Item.Seller.PositiveFeedbackPercent != undefined">
+        <div>Popularity</div>
+        <div>{{productInfo.Item.Seller.PositiveFeedbackPercent}}</div>
+    </li>
+
+    <li *ngIf="productInfo.Item.Seller.FeedbackRatingStar != undefined">
+        <div>Feedback Rating Star</div>
+        <div>{{productInfo.Item.Seller.FeedbackRatingStar}}</div>
+    </li>
+
+
+    <li *ngIf="productInfo.Item.Seller.TopRatedSeller != undefined">
+        <div>Top Rated</div>
+        <div>{{productInfo.Item.Seller.TopRatedSeller}}</div>
+    </li>
+
+
+    <li *ngIf="productInfo.Item.Storefront.StoreName != undefined">
+        <div>Store Name</div>
+        <div>{{productInfo.Item.Storefront.StoreName}}</div>
+    </li>
+
+
+    <li *ngIf="productInfo.Item.Storefront.StoreURL != undefined">
+        <div>Buy Product At</div>
+        <a href="{{productInfo.Item.Storefront.StoreURL}}">
+            <div>{{productInfo.Item.Storefront.StoreURL}}</div>
+        </a>
+
+    </li>
+
+</div> -->
+
+
+  <!-- No Results  --> 
+  <div *ngIf="productInfo.Item == undefined"  class="container alert alert-warning" role="alert">
+    No records
+  </div>
+
+
+

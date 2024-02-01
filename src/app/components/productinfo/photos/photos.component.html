@@ -1,0 +1,59 @@
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+<!-- <p>photos works!</p> -->
+
+
+<div class="container row g-3" 
+style="margin: 0 auto; margin-bottom: 30px; margin-top: 40px;">
+<div *ngIf="photosInfo.items != undefined">
+  <div class="row">
+  <div class="col-md-4">
+    <a [href]="photosInfo.items[0].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[0].link"  alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+    <a [href]="photosInfo.items[1].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[1].link" alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+    <a [href]="photosInfo.items[2].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[2].link" alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a [href]="photosInfo.items[3].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[3].link" alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+    <a [href]="photosInfo.items[4].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[4].link" alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+    <a [href]="photosInfo.items[5].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[5].link" alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a [href]="photosInfo.items[6].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[6].link" alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+    <a [href]="photosInfo.items[7].link" target="_blank">
+      <img width="400px" [src]="photosInfo.items[7].link" alt="Image" style="margin-bottom: 10px; border: 4px solid black;">
+    </a>
+        
+  </div>
+  <div>
+</div>
+
+
+
+</div>
+
+
+  <!-- No Results  -->
+  <div *ngIf="photosInfo.items == undefined"  class="container alert alert-warning" role="alert">
+    No records
+  </div>
+  
+
+
+
+

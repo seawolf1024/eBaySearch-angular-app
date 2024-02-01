@@ -1,0 +1,39 @@
+h2{
+    text-align: center;
+}
+
+
+/* This can be written in the style.css */
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+ul,ol{
+    list-style-type: none;
+}
+
+/**/
+.people_list {
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.people_list li {
+    height: 50px;
+    line-height: 50px;
+}
+
+.people_list li .form_input {
+    width: 300px;
+    height: 40px;
+}
+
+.people_list button {
+    width: 120px;
+    height: 28px;
+    float: right;
+    margin-right: 40px;
+}

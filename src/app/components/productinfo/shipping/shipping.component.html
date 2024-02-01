@@ -1,0 +1,162 @@
+<!-- <p>shipping works!</p> -->
+
+
+  
+<!-- <p>{{productInfo | json}}</p> -->
+
+<!-- <p>{{shippingInfo | json}}</p> -->
+
+<div class="container row g-3 text-bg-dark table-responsive" 
+    style="margin: 0 auto; margin-bottom: 30px; margin-top: 0px;background-color: black;">
+    <table class="table table-dark table-striped" *ngIf="shippingInfo != undefined && shippingInfo.shippingInfo != undefined">
+        <tbody >
+            <thead >
+                <tr>
+                  <th scope="col" class="col-md-4"></th>
+                  <th scope="col" class="col-md-8"></th>
+                </tr>
+            </thead>
+
+            <!-- Shipping Cost  -->
+            <tr *ngIf="shippingInfo.shippingInfo[0].shippingServiceCost != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Shipping Cost</div>
+                </th>
+                <!-- info  -->
+                <td *ngIf="shippingInfo.shippingInfo[0].shippingServiceCost[0].__value__ == 0">
+                    <p>Free Shipping</p>
+                </td>
+                <td *ngIf="shippingInfo.shippingInfo[0].shippingServiceCost[0].__value__ != 0">
+                    <p>{{shippingInfo.shippingInfo[0].shippingServiceCost[0].__value__}}</p>
+                </td>
+            </tr>
+
+            <!-- ShippingLocations -->
+            <tr *ngIf="shippingInfo.shippingInfo[0].shipToLocations != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Shipping Locations</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <p>{{shippingInfo.shippingInfo[0].shipToLocations[0]}}</p>
+                </td>
+            </tr>
+
+            <!-- Handing Time -->
+            <tr *ngIf="shippingInfo.shippingInfo[0].handlingTime != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Handing Time</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <span>{{shippingInfo.shippingInfo[0].handlingTime[0]}}</span>
+                    <span *ngIf="shippingInfo.shippingInfo[0].handlingTime[0] <= 1"> Day</span>
+                    <span *ngIf="shippingInfo.shippingInfo[0].handlingTime[0] > 1"> Days</span>
+                </td>
+            </tr>
+
+            <!-- Expedited Shipping -->
+            <tr *ngIf="shippingInfo.shippingInfo[0].expeditedShipping != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Expedited Shipping</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <!-- <p>{{shippingInfo.shippingInfo[0].expeditedShipping[0]}}</p> -->
+                    <span *ngIf="shippingInfo.shippingInfo[0].expeditedShipping[0]=='true'" class="material-icons" style="color: rgb(49, 157, 49);">
+                        check
+                    </span>
+
+                    <span *ngIf="shippingInfo.shippingInfo[0].expeditedShipping[0]=='false'" class="material-icons" style="color: rgb(212, 55, 55);">
+                        close
+                    </span>
+                </td>
+            </tr>
+
+            <!-- One Day Shipping -->
+            <tr *ngIf="shippingInfo.shippingInfo[0].oneDayShippingAvailable != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>One Day Shipping</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <!-- <p>{{shippingInfo.shippingInfo[0].oneDayShippingAvailable[0]}}</p> -->
+                    <span *ngIf="shippingInfo.shippingInfo[0].oneDayShippingAvailable[0]=='true'" class="material-icons" style="color: rgb(49, 157, 49);">
+                        check
+                    </span>
+
+                    <span *ngIf="shippingInfo.shippingInfo[0].oneDayShippingAvailable[0]=='false'" class="material-icons" style="color: rgb(212, 55, 55);">
+                        close
+                    </span>
+                </td>
+            </tr>
+
+            <!-- Return Accepted -->
+            <tr *ngIf="shippingInfo.returnsAccepted != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Return Accepted</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <!-- <p>{{shippingInfo.returnsAccepted[0]}}</p> -->
+                    <span *ngIf="shippingInfo.returnsAccepted[0]=='true'" class="material-icons" style="color: rgb(49, 157, 49);">
+                        check
+                    </span>
+
+                    <span *ngIf="shippingInfo.returnsAccepted[0]=='false'" class="material-icons" style="color: rgb(212, 55, 55);">
+                        close
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+  <!-- No Results  -->
+  <div *ngIf="shippingInfo == undefined || shippingInfo.shippingInfo == undefined"  class="container alert alert-warning" role="alert">
+    No records
+  </div>
+
+
+
+
+ <!-- <div *ngIf="shippingInfo != undefined && shippingInfo.shippingInfo != undefined">
+     ShippingCost
+    <div *ngIf="shippingInfo.shippingInfo[0].shippingServiceCost != undefined">
+        <p>ShippingCost</p>
+        <p>{{shippingInfo.shippingInfo[0].shippingServiceCost[0].__value__}}</p>
+    </div>
+    ShippingLocations
+    <div *ngIf="shippingInfo.shippingInfo[0].shipToLocations != undefined">
+        <p>ShippingLocations</p>
+        <p>{{shippingInfo.shippingInfo[0].shipToLocations[0]}}</p>
+    </div>
+     Handing Time 
+    <div *ngIf="shippingInfo.shippingInfo[0].handlingTime != undefined">
+        <p>Handing Time</p>
+        <p>{{shippingInfo.shippingInfo[0].handlingTime[0]}}</p>
+    </div>
+     Expedited Shipping 
+    <div *ngIf="shippingInfo.shippingInfo[0].expeditedShipping != undefined">
+        <p>Expedited Shipping</p>
+        <p>{{shippingInfo.shippingInfo[0].expeditedShipping[0]}}</p>
+    </div>
+     One Day Shipping 
+    <div *ngIf="shippingInfo.shippingInfo[0].oneDayShippingAvailable != undefined">
+        <p>One Day Shipping</p>
+        <p>{{shippingInfo.shippingInfo[0].oneDayShippingAvailable[0]}}</p>
+    </div>
+     Return Accepted 
+    <div *ngIf="shippingInfo.returnsAccepted != undefined">
+        <p>Return Accepted</p>
+        <p>{{shippingInfo.returnsAccepted[0]}}</p>
+    </div>
+</div> -->
+

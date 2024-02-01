@@ -1,0 +1,164 @@
+<!-- <p>results works!</p> -->
+<!-- Pagination Test
+<div>
+    <div *ngFor="let item of paginatedArray">
+        {{item[0]}} -- {{item[1].title}}
+    </div>
+</div> -->
+
+<div *ngIf="paginatedArray.length != 0" class="container" style="text-align: right;">
+    <button type="button" class="btn btn-outline-secondary">>Detail</button>
+</div>
+
+
+<!-- Results Table  -->
+<div [hidden]="paginatedArray.length == 0" class="container row g-3 searchform text-bg-dark table-responsive" style="margin: 0 auto; margin-bottom: 30px; margin-top: 40px;background-color: black;">
+    
+    <table class="table table-dark table-striped">
+        <thead >
+          <tr>
+            <th scope="col" class="col-md-1">#</th>
+            <th scope="col" class="col-md-2">Image</th>
+            <th scope="col" class="col-md-4">Title</th>
+            <th scope="col" class="col-md-1">Price</th>
+            <th scope="col" class="col-md-2">Shipping</th>
+            <th scope="col" class="col-md-1">Zip</th>
+            <th scope="col" class="col-md-1">Wish List</th>
+          </tr>
+        </thead>
+
+        <tbody >
+          <tr *ngFor="let item of paginatedArray; let i = index">
+            <!-- #  -->
+            <th scope="row">
+                <div>{{(currentPage - 1)* 10 +  i + 1}}</div>
+            </th>
+
+            <!-- Image  -->
+            <td>
+                <a [href]="item[1].galleryURL" target="_blank">
+                    <img [src]="item[1].galleryURL" alt="Image"/>
+                </a>
+            </td>
+            <!-- Title -->
+            <td>
+                <a [routerLink]="['/productinfo/', item[1].itemId[0]]">
+                    <div [title]="item[1].title" style="text-overflow: ellipsis; 
+                    white-space: nowrap;    
+                    overflow: hidden;      
+                    text-overflow: ellipsis; 
+                    max-width: 300px;">{{item[1].title}}</div>
+                </a>
+            </td>
+            <!-- Price -->
+            <td>
+                <div>${{item[1].sellingStatus[0].currentPrice[0].__value__}}</div>
+            </td>
+            <!-- Shipping -->
+            <td>
+                <div *ngIf="item[1].shippingInfo == undefined || item[1].shippingInfo[0].shippingServiceCost == undefined">
+                    NA
+                </div>
+                <div *ngIf="item[1].shippingInfo != undefined && item[1].shippingInfo[0].shippingServiceCost != undefined">
+                    <div *ngIf="item[1].shippingInfo[0].shippingServiceCost[0].__value__ == 0">
+                        Free Shipping
+                    </div>
+                    <div *ngIf="item[1].shippingInfo[0].shippingServiceCost[0].__value__ != 0">
+                        {{item[1].shippingInfo[0].shippingServiceCost[0].__value__}}
+                    </div>
+                </div>
+            </td>
+            <!-- Zip -->
+            <td>
+                <div>
+                    {{item[1].postalCode[0]}}
+                </div>
+            </td>
+            <!-- Wish List -->
+            <td>
+                <div style="background-color: rgb(220, 220, 220); width: 40px; height: 40px;  border-radius: 5px; display: flex; justify-content: center; text-align: center;">
+                    <a href="javascript:void(0);" style="padding-top: 5px;">
+                        <span *ngIf="isInWatchlist(item[1].itemId[0]) == true" (click)="addToWatchlist(item[1])" class="material-icons"
+                            style="color: rgb(36, 33, 33);">
+                            remove_shopping_cart
+                        </span>
+                        <span *ngIf="isInWatchlist(item[1].itemId[0]) == false" (click)="addToWatchlist(item[1])" class="material-icons"
+                            style="color: rgb(36, 33, 33);">
+                            add_shopping_cart
+                        </span>
+                    </a>
+                </div >
+
+
+                <!-- <button (click)="addToWatchlist(item[1])">addToWatchlist()</button>  -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+    
+    
+    <!-- <li style="border: solid 2px red; margin: 10px;" *ngFor="let item of paginatedArray; let i = index">
+        <div>
+             Index  
+            <div>{{(currentPage - 1)* 10 +  i + 1}}</div>
+             Image 
+            <a [href]="item[1].galleryURL" target="_blank">
+                <img [src]="item[1].galleryURL" alt="Image"/>
+            </a>
+            
+             Title  
+            <a [routerLink]="['/productinfo/', item[1].itemId[0]]">
+                <div>{{item[1].title}}</div>
+            </a>
+            
+             Price  
+            <div>{{item[1].sellingStatus[0].currentPrice[0].__value__}}</div>
+             Shipping  
+            <div *ngIf="item[1].shippingInfo == undefined || item[1].shippingInfo[0].shippingServiceCost == undefined">
+                NA
+            </div>
+            <div *ngIf="item[1].shippingInfo != undefined && item[1].shippingInfo[0].shippingServiceCost != undefined">
+                <div *ngIf="item[1].shippingInfo[0].shippingServiceCost[0].__value__ == 0">
+                    Free Shipping
+                </div>
+                <div *ngIf="item[1].shippingInfo[0].shippingServiceCost[0].__value__ != 0">
+                    {{item[1].shippingInfo[0].shippingServiceCost[0].__value__}}
+                </div>
+            </div>
+             Zip  
+            <div>
+                {{item[1].postalCode[0]}}
+            </div>
+        </div>
+         WishList 
+        <button (click)="addToWatchlist(item[1])">addToWatchlist()</button> 
+    </li> -->
+
+
+</div>
+
+
+<div class="container " style="margin: 0 auto; ">
+        <nav aria-label="...">
+            <ul class="pagination" style="margin: 0 auto; width: 350px;">
+              <!-- Previous  -->
+              <li [class]="currentPage == 1 ? 'page-item disabled' : 'page-item'" [hidden]="paginatedArray.length == 0">
+                <a class="page-link" href="javascript: void(0)" (click)="updatePage(currentPage - 1)">Previous</a>
+              <!-- Index from 1 to maxLen -->
+              <li *ngFor="let i of pageIndexes" [class]="i == currentPage ? 'page-item active' : 'page-item'">
+                <a class="page-link" href="javascript: void(0)" (click)="updatePage(i)">{{ i }}</a>
+              </li>
+              <!-- Next  -->
+              <li [class]="currentPage == maxPageIdx ? 'page-item disabled' : 'page-item'" [hidden]="paginatedArray.length == 0">
+                <a class="page-link" href="javascript: void(0)" (click)="updatePage(currentPage + 1)">Next</a>
+              </li>
+            </ul>
+        </nav>
+</div>
+
+
+  <!-- No Results  -->
+  <div [hidden]="paginatedArray.length != 0"   class="container alert alert-warning" role="alert"  >
+    No records
+  </div>

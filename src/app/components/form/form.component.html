@@ -1,0 +1,39 @@
+<h2>User registration center</h2>
+
+<div class="people_list">
+    <ul>
+        <li>
+            Name:<input type="text" id="username" class="form_input" [(ngModel)]="peopleInfo.username"/>
+        </li>
+        <li>Gender:
+            <input type="radio" id="sex1" [(ngModel)]="peopleInfo.sex" value="1"><label for="sex1">Male</label>
+            <input type="radio" id="sex2" [(ngModel)]="peopleInfo.sex" value="2"><label for="sex1">Female</label>
+        </li>
+        <li>
+            City:
+            <select name="city" [(ngModel)]="peopleInfo.city">
+                <option [value]="item" *ngFor="let item of peopleInfo.cityList">{{item}}</option>
+            </select>
+        </li>
+        <li>
+            Hobboy:
+            <span *ngFor="let item of peopleInfo.hobby; let key=index;">
+                <input type="checkbox" [id]="'check'+key" [(ngModel)]="item.checked"/>
+                <label [for]="'check'+key">{{item.title}}</label>
+
+            </span>
+        </li>
+        <li>
+            Mark:
+            <textarea cols="30" rows="10" [(ngModel)]="peopleInfo.mark"></textarea>
+        </li>
+
+
+    </ul>
+    <button (click)="doSubmit()">Get from content</button>
+
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <pre>
+        {{peopleInfo | json}}
+    </pre>
+</div>

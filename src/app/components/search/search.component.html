@@ -1,0 +1,201 @@
+
+
+
+
+<!-- <button (click)="doLogin()">dologin</button> -->
+<!-- <button (click)="getsearchUrl()">getsearchUrl</button> -->
+<!-- <div class="container" style="background-color:red">
+    <p>{{searchInfo | json}}</p>
+</div> -->
+
+
+
+
+<div class="container row g-3 searchform text-bg-dark responsive-font-example" style="padding-bottom: 30px; padding-top: 40px;">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">Product Search</div>
+    </div>
+    
+    <!-- Keyword -->
+    <div class="row">
+        <div class="col-md-2"></div> <!-- empty columns -->
+        <!-- Keyword words  -->
+        <div class="col-md-2 d-flex align-items-center" >
+            <label for="keyword" class="form-label">
+                <h3>
+                    Keyword<b style="color: red">*</b>
+                </h3>
+            </label>
+        </div>
+        <!-- Input box -->
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="keyword" placeholder="Enter Product Name(eg. iPhone 8)" 
+            [(ngModel)]="searchInfo.keyword"  [ngStyle]="{'border': keywordCheck() == true ? '' : 'solid 2px red'}">
+        </div>
+    </div>
+    <!-- Validation -->
+    <div class="row" style="margin-top: 0px;">
+        <div class="col-md-4"></div> <!-- empty columns -->
+        <div class="col-md-4" *ngIf="keywordCheck() == false" [ngStyle]="{'color': keywordCheck() == true ? '' : 'red'}">Please enter a keyword.</div>
+    </div>
+
+
+    <!-- Category -->
+    <div class="row">
+        <div class="col-md-2"></div> <!-- empty columns -->
+        <!-- Category word  -->
+        <div class="col-md-2 d-flex align-items-center" >
+            <label for="category" class="form-label">Category</label>
+        </div>
+        
+        <!-- Category selectbox  -->
+        <div class="col-md-2">
+            <select id="category" class="form-select" [(ngModel)]="searchInfo.category">
+                <option value="0" selected>All categories</option>
+                <option value="550">Art</option>
+                <option value="2948">Baby</option>
+                <option value="261186">Books</option>
+                <option value="11450">Clothing, Shoes & Accessories</option>
+                <option value="58058">Computers/Tablets & Networking</option>
+                <option value="26395">Health & Beauty</option>
+                <option value="11233">Music</option>
+                <option value="1249">Video Games & Consoles</option>
+              </select>
+        </div>
+    </div>  
+
+
+    <!-- Condition -->
+    <div class="row">
+        <div class="col-md-2"></div> <!-- empty columns -->
+        <!-- Condition word  -->
+        <div class="col-md-2 d-flex align-items-center" >
+            <div>Condition</div>
+        </div>
+        <!-- Condition checkbox  -->
+        <div class="col-md-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="ConditionCheckbox1" value="option1"
+                    [(ngModel)]="searchInfo.condition.new">
+                <label class="form-check-label" for="ConditionCheckbox1">New</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="ConditionCheckbox2" value="option2"
+                    [(ngModel)]="searchInfo.condition.used">
+                <label class="form-check-label" for="ConditionCheckbox2">Used</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="ConditionCheckbox3" value="option3"
+                    [(ngModel)]="searchInfo.condition.unspecified">
+                <label class="form-check-label" for="ConditionCheckbox3">Unspecified</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shipping Options -->
+    <div class="row">
+        <div class="col-md-2"></div> <!-- empty columns -->
+        <!-- Shipping Options words  -->
+        <div class="col-md-2 d-flex align-items-center" >
+            <div>Shipping Options</div>
+        </div>
+        <!-- Shipping Options checkbox -->
+        <div class="col-md-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="ShippingCheckbox1" value="option1"
+                [(ngModel)]="searchInfo.shipping.localPickUp">
+                <label class="form-check-label" for="ShippingCheckbox1">Local Pickup</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="ShippingCheckbox2" value="option2"
+                [(ngModel)]="searchInfo.shipping.freeShipping">
+                <label class="form-check-label" for="ShippingCheckbox2">Free Shipping</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Distance -->
+    <div class="row">
+        <div class="col-md-2"></div> <!-- empty columns -->
+        <!-- Distance words  -->
+        <div class="col-md-2 d-flex align-items-center">
+            <label for="distance" class="form-label">Distance</label>
+        </div>
+        <!-- Distance  -->
+        <div class="col-md-4">
+            <input type="number" min="1" class="form-control" id="distance" placeholder="10"
+            [(ngModel)]="searchInfo.distance">
+        </div>
+    </div>
+
+    <!-- From -->
+    <div class="row">
+        <div class="col-md-2"></div> <!-- empty columns -->
+        <!-- From words  -->
+        <div  class="col-md-2 d-flex ">
+            From<b style="color:red">*</b>:
+        </div>
+        <!-- From option  -->
+        <div class="col-md-4">
+            <div class="form-check">
+                <!-- Current Location  -->
+                <input class="form-check-input" type="radio" name="fromRadioOptions" id="fromRadio1" value="currLocation"
+                    [(ngModel)]="searchInfo.from" (click)="GetIPAndClearZipcode()">
+                <label class="form-check-label" for="fromRadio1">Current Location</label>
+            </div>
+    
+            <div class="form-check form-check-inline">
+                <!-- Other  -->
+                <input class="form-check-input" type="radio" name="fromRadioOptions" id="fromRadio2" value="otherLocation"
+                    [(ngModel)]="searchInfo.from" (click)="clearZipcode()">
+                <label class="form-check-label" for="fromRadio2">Other. Please specify zip code:</label>
+            </div>
+
+            <!-- Enter Zipcode  -->
+            <label for="exampleDataList" class="form-label"></label>
+            <input class="form-control" [(ngModel)]="searchInfo.zipcode" (input)="getCurrZipcodeRecomm()" 
+                list="datalistOptions" id="exampleDataList" placeholder=""
+                [disabled]="searchInfo.from !== 'otherLocation'" 
+                [ngStyle]="{'border':zipcodeCheck()?'':'solid 2px red', 'color': (searchInfo.from === 'otherLocation') ? 'black' : 'transparent'}">
+            <datalist id="datalistOptions">
+                <option *ngFor="let option of zipcodes" [value]="option">{{ option }}</option>
+            </datalist>
+                
+            <!-- Validation -->
+            <div *ngIf="zipcodeCheck() == false" [ngStyle]="{'color': zipcodeCheck() == true ? '' : 'red'}">Please enter a zip code.</div>
+        </div>
+        
+    </div>
+
+    <!-- Search & Clear -->
+    <div class="row">
+        <!-- Search  -->
+        <div class="col-md-2"></div> <!-- empty columns -->
+        <div class="col-md-6" >
+            <button type="button" class="btn btn-primary" style="width: 120px;;"
+            (click)="search()" [disabled]="keywordCheck() == false || zipcodeCheck() == false">
+                <span class="material-icons">
+                    search
+                </span> Search
+            </button>
+            <button type="button" class="btn btn-primary" style="margin-left: 40px; width: 120px;"
+            (click)="clear()">
+                <span class="material-icons">
+                    notes
+                </span> Clear
+            </button>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- <div class="container " style="margin: 0 auto; "></div> -->
+<div class="container progress"   style="margin: 0 auto; margin-top: 30px;" [hidden]="showProgressBar == 0">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" 
+    [style.width.%]="getRandomNumber()" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
+    [hidden]="showProgressBar == 0"></div>
+</div>
+
+

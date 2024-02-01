@@ -1,0 +1,76 @@
+
+<!-- <p>productinfo works!</p> -->
+
+
+
+
+
+<div *ngIf="productInfo.Item != undefined" class="container" style="margin: 0 auto; text-align: center; padding-top: 20px;">
+  <b>{{productInfo.Item.Title}}</b>
+</div>
+
+
+<!-- <p>{{itemId}}</p> -->
+<div class="container row g-3 searchform responsive-font-example" style="margin: 0 auto; ;">  
+  
+  <!-- Returning Button  -->
+    <div class="col-md-1">
+      <a routerLink="/results/">
+      <button type="button" class="btn btn-light" style="display: flex; align-items: center;">
+        <span class="material-icons">
+          chevron_left
+        </span>
+        <span>List</span>
+      </button>
+      </a>
+    </div> 
+
+  <div class="col-md-3"></div><!-- empty columns -->
+  <div class="col-md-5"></div><!-- empty columns -->
+
+  <!-- Facebook Button  -->
+  <div class="col-md-1">
+    <span class="material-icons-outlined" style="background-color: rgb(220, 220, 220); width: 40px; height: 40px;  
+    border-radius: 5px">
+      share
+      </span>
+  </div>
+  <!-- watchlist Button  -->
+  <div class="col-md-1" style="background-color: rgb(220, 220, 220); width: 40px; height: 40px;  
+    border-radius: 5px; display: flex; justify-content: center; text-align: center;">
+    <a href="javascript:void(0);" style="padding-top: 5px" >
+        <span *ngIf="isInWatchlist(itemId) == true" (click)="addToWatchlist()" class="material-icons"
+            style="color: rgb(36, 33, 33);">
+            remove_shopping_cart
+        </span>
+        <span *ngIf="isInWatchlist(itemId) == false" (click)="addToWatchlist()" class="material-icons"
+            style="color: rgb(36, 33, 33);">
+            add_shopping_cart
+        </span>
+    </a>
+  </div >
+  
+</div>
+  
+<!-- <button (click)="addToWatchlist()">AddToWishlist</button> -->
+
+
+
+
+<!-- <button (click)="addToWatchlist()">AddToWishlist</button> -->
+
+
+
+
+
+<div class="container results-nav " style="margin: 0 auto; background-color: red;">
+  <div style="float: right;">
+    <a routerLink="product" class="btn btn-outline-dark">Product</a>
+    <a routerLink="photos" class="btn btn-outline-dark ">Photos</a>
+    <a routerLink="shipping" class="btn btn-outline-dark ">Shipping</a>
+    <a routerLink="seller" class="btn btn-outline-dark ">Seller</a>
+    <a routerLink="similarproduct" class="btn btn-outline-dark ">Similar Product</a>
+  </div>
+
+</div>
+<router-outlet></router-outlet>

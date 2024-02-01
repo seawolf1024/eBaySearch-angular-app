@@ -1,0 +1,66 @@
+<!-- <p>similarproduct works!</p> -->
+
+<div class="container  row g-3" style="margin: 0 auto;">
+    <div class="col-2" >
+        <label for="sortby" class="form-label">SortBy</label>
+        <select id="sortby" class="form-select" [(ngModel)]="sortStatus" (change)="doSort()">
+          <option value="0" selected>Default</option>
+          <option value="1">Product Name</option>
+          <option value="2">Price</option>
+          <option value="3">Shipping Cost</option>
+          <option value="4">Days Left</option>
+        </select>
+    </div>  
+    
+    <div class="col-2" >
+        <label for="orderby" class="form-label">OrderBy</label>
+        <select id="orderby" class="form-select" [(ngModel)]="isAscending" (change)="doSort()">
+          <option [ngValue]="true" selected>Ascending</option>
+          <option [ngValue]="false">Descending</option>
+        </select>
+    </div>  
+</div>
+
+<div class="container  row g-3" style="margin: 0 auto;">
+
+</div>
+
+<div class="row container" style="margin: 0 auto;" *ngIf="similarInfo != undefined && similarInfo.getSimilarItemsResponse != undefined">
+    <li class="row text-bg-dark" style="margin: 10px; padding: 20px; border: 1px solid black;" *ngFor="let item of similarInfo.getSimilarItemsResponse.itemRecommendations.item.slice(0, isShowingMore? similarInfo.getSimilarItemsResponse.itemRecommendations.item.length : 5)">
+        <div class="col-md-2">
+            <img [src]="item.imageURL" alt="itemimage">
+        </div>
+
+        <div class="col-md-6">
+            <!-- <div>Product Name</div> -->
+            <!-- <div>{{item.itemId}}</div> -->
+            <div>{{item.title}}</div>
+            
+        
+            <div style="color: rgb(4, 103, 70);">Price: ${{item.buyItNowPrice.__value__}}</div>
+        
+            <div style="color: rgb(130, 130, 16);">Shipping Cost: ${{item.shippingCost.__value__}}</div>
+        
+            <div>Days Left: {{getDays(item.timeLeft)}}</div>
+            <!-- <div>{{item.timeLeft}}</div> -->
+        </div>
+        
+        
+    </li>
+</div>
+
+<div class="container  row g-3" style="margin: 0 auto; text-align: center;">
+    <div  *ngIf="similarInfo != undefined && similarInfo.getSimilarItemsResponse.itemRecommendations.item.length > 5">
+        <button class="btn btn-dark" (click)="showMoreAndLess()">
+            {{ isShowingMore ? 'Show Less' : 'Show More' }}
+        </button>
+    </div>
+</div>
+
+
+
+<div *ngIf="similarInfo == undefined || similarInfo.getSimilarItemsResponse.itemRecommendations.item.length == 0"  class="container alert alert-warning" role="alert">
+    <p>No results</p>
+</div>
+
+

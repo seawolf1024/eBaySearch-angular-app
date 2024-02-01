@@ -1,27 +1,91 @@
-# MyApp
+# eBaySearch - Angular App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
+## Description
 
-## Development server
+An Angular App that provides eBay product search and wishlist management.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologies Used
 
-## Code scaffolding
+- **Front-end:**
+  - Angular 16.2.9
+  - ProgressBar
+- **Backend:**
+  - Node.js
+  - Axios
+- **Database:**
+  - MongoDB
+- **APIs:**
+  - eBay API
+  - Google Customized Search API
+  - IPInfo
+- **UI:**
+  - Bootstrap
+  - Material Design Icons
+  - Responsive Design
+- **Cloud:**
+  - AWS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+1. **Advanced Search Tab:**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   - Keywords, category, condition, shipping options, distance.
 
-## Running unit tests
+2. **Product Details:**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   - Basic details, photos, shipping info, seller info, similar products.
+   - Visually appealing cards presenting search results.
 
-## Running end-to-end tests
+   - Share product details via links.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. **Wishlist:**
 
-## Further help
+   - Add/remove products to/from wishlist.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. **Cloud Integration:**
+
+   - Save personal wishlist to the cloud.
+
+5. **UI Design:**
+
+   - Good-looking Angular web app
+   - responsive UI design, supporting mobile phone view.
+
+## Getting Started
+
+Build Angular App. This will generate a dist folder. Then move the project folder inside to the node folder.
+
+```
+ng build --prod
+```
+
+Run the app.js file
+
+```js
+node server.js
+```
+
+## Screenshots
+
+<img src="screenshots/sample01.png" alt="Image Alt Text" width="960" height="540">
+
+
+
+<img src="screenshots/sample02.png" alt="Image Alt Text" width="960" height="540">
+
+
+
+<img src="screenshots/sample05.png" alt="Image Alt Text" width="960" height="530">
+
+
+
+<img src="screenshots/sample06.png" alt="Image Alt Text" width="960" height="540">
+
+
+
+<img src="screenshots/sample03.png" alt="Image Alt Text" width="960" height="540">
+
+
+
+<img src="screenshots/sample07.png" alt="Image Alt Text" width="960" height="508">
+

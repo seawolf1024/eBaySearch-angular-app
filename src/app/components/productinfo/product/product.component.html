@@ -1,0 +1,124 @@
+<!-- <p>product works!</p> -->
+<!-- <div>{{productInfo | json}}</div> -->
+
+<div class="container row g-3 text-bg-dark table-responsive" style="margin: 0 auto; margin-bottom: 30px; margin-top: 0px;background-color: black;">
+    
+    <table class="table table-dark table-striped" *ngIf="productInfo.Item != undefined">
+        <tbody >
+            <thead >
+                <tr>
+                  <th scope="col" class="col-md-4"></th>
+                  <th scope="col" class="col-md-4"></th>
+                  <th scope="col" class="col-md-4"></th>
+                </tr>
+            </thead>
+
+            <!-- Image  -->
+            <tr *ngIf="productInfo.Item.PictureURL != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Product Image</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <a href="javascript:void(0);">View Product Images Here</a>
+                    <!-- <div>{{productInfo.Item.PictureURL}}</div> -->
+                </td>
+            </tr>
+
+            <!-- Price  -->
+            <tr *ngIf="productInfo.Item.ConvertedCurrentPrice != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Price</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <div>${{productInfo.Item.ConvertedCurrentPrice.Value}}</div>
+                </td>
+            </tr>
+
+            <!-- Location  -->
+            <tr *ngIf="productInfo.Item.Location != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Location</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <div>{{productInfo.Item.Location}}</div>
+                </td>
+            </tr>
+            
+            <!-- Return Policy -->
+            <tr *ngIf="productInfo.Item.ReturnPolicy.ReturnsAccepted != undefined || productInfo.Item.ReturnPolicy.ReturnsWithin != undefined">
+                <!-- name  -->
+                <th scope="row">
+                    <div>Return Policy</div>
+                </th>
+                <!-- info  -->
+                <td>
+                    <div *ngIf="productInfo.Item.ReturnPolicy.ReturnsAccepted != undefined">
+                        {{productInfo.Item.ReturnPolicy.ReturnsAccepted}}
+                    </div>
+                    <div *ngIf="productInfo.Item.ReturnPolicy.ReturnsWithin != undefined">
+                        {{productInfo.Item.ReturnPolicy.ReturnsWithin}}
+                    </div>
+                </td>
+            </tr>
+
+            <tr *ngFor="let nameValuePair of productInfo.Item.ItemSpecifics.NameValueList">
+                <th>{{nameValuePair.Name}}</th>
+                <td>
+                    <div *ngFor="let val of nameValuePair.Value; let key=index">
+                        {{val}}<i *ngIf="key != nameValuePair.Value.length - 1">,</i>
+                    </div>
+                </td>
+                <!-- <div>{{nameValuePair.Value[0]}}</div> -->
+            </tr>
+
+
+<!-- <div *ngIf="productInfo.Item != undefined"> -->
+
+    <!-- <li *ngIf="productInfo.Item.PictureURL != undefined">
+        <div>Product Image</div>
+        <div>{{productInfo.Item.PictureURL}}</div>
+    </li>
+    
+    <li *ngIf="productInfo.Item.ConvertedCurrentPrice != undefined">
+        <div>Price</div>
+        <div>${{productInfo.Item.ConvertedCurrentPrice.Value}}</div>
+    </li>
+    
+    <li *ngIf="productInfo.Item.Location != undefined">
+        <div>Location</div>
+        <div>{{productInfo.Item.Location}}</div>
+    </li>
+    
+    <li *ngIf="productInfo.Item.ReturnPolicy.ReturnsAccepted != undefined || productInfo.Item.ReturnPolicy.ReturnsWithin != undefined">
+        <div>Return Policy</div>
+        <div *ngIf="productInfo.Item.ReturnPolicy.ReturnsAccepted != undefined">
+            {{productInfo.Item.ReturnPolicy.ReturnsAccepted}}
+        </div>
+        <div *ngIf="productInfo.Item.ReturnPolicy.ReturnsWithin != undefined">
+            {{productInfo.Item.ReturnPolicy.ReturnsWithin}}
+        </div>
+    </li> -->
+    
+    <!-- <li *ngFor="let nameValuePair of productInfo.Item.ItemSpecifics.NameValueList">
+        <div>{{nameValuePair.Name}}</div>
+        <div *ngFor="let val of nameValuePair.Value; let key=index">
+            {{val}}<i *ngIf="key != nameValuePair.Value.length - 1">,</i>
+        </div>
+
+    </li> -->
+    
+<!-- </div> -->
+
+
+
+  <!-- No Results  -->
+  <div [hidden]="productInfo.Item != undefined"  class="container alert alert-warning" role="alert">
+    No records
+  </div>
+  
